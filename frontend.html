@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coding Idea Generator</title>
+  <style>
+    body { background: #fff; color: #000; font-family: sans-serif; }
+    #result { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Coding Idea Generator</h1>
+  <form id="ideaForm">
+    <label for="prompt">Enter your prompt:</label><br>
+    <input type="text" id="prompt" name="prompt" required><br>
+    <button type="submit">Generate Idea</button>
+  </form>
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('ideaForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const prompt = document.getElementById('prompt').value;
+      document.getElementById('result').textContent = 'Loading...';
+      try {
+        const response = await fetch('YOUR_BACKEND_URL/generate-idea', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt })
+        });
+        const data = await response.json();
+        document.getElementById('result').textContent = data.result || JSON.stringify(data);
+      } catch (err) {
+        document.getElementById('result').textContent = 'Error: ' + err;
+      }
+    });
+  </script>
+</body>
+</html>
