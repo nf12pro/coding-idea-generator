@@ -7,7 +7,7 @@ load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
 SERVER_URL = "https://ai.hackclub.com/proxy/v1"
-MODEL = "google/gemini-3-flash-preview"  # Use your preferred model
+MODEL = "google/gemini-3-flash-preview" 
 
 app = Flask(__name__)
 
